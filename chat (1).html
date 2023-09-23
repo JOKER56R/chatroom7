@@ -1,0 +1,238 @@
+<!doctype html>
+<html> 
+ <head> 
+  <title>Chat Room</title> 
+  <link rel="stylesheet" type="text/css" href="style.css"> 
+ <style type="text/css" id="dcoder_stylesheet">* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+  font-family: Arial, sans-serif;
+  color: #fff;
+}
+
+.chat-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chat-window {
+  height: 400px;
+  overflow-y: scroll;
+  margin-bottom: 20px;
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.messages {
+  list-style: none;
+  padding: 10px;
+}
+
+.messages li {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.message-form {
+  display: flex;
+  margin-top: 20px;
+}
+
+.message-form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  background-color: #f2f2f2;
+  color: #333;
+  font-size: 16px;
+}
+
+.message-form button {
+  padding: 10px;
+  border: none;
+  background-color: #ff5e5e;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.message-form button:hover {
+  background-color: #ff3b3b;
+}
+
+.message-username {
+  font-weight: bold;
+  color: #ff5e5e;
+  margin-right: 5px;
+}</style></head> 
+ <body> 
+  <div class="chat-container"> 
+   <header> 
+    <h1>Chat Room</h1> 
+   </header> 
+   <main> 
+    <div class="chat-window"> 
+     <ul class="messages"></ul> 
+    </div> 
+    <form class="message-form"> 
+     <input type="text" placeholder="Enter your message..."> <button>Send</button> 
+    </form> 
+   </main> 
+  </div> 
+  <script src="script.js"></script> 
+ 
+<script type="text/javascript" id="dcoder_script">const messages = document.querySelector('.messages');
+const messageForm = document.querySelector('.message-form');
+const messageInput = document.querySelector('.message-form input[type="text"]');
+
+// Object to store usernames and password
+const users = {
+  'user1': 'password1',
+  'user2': 'password2',
+  'user3': 'password3',
+  0: 'o],Q',
+  1: 'C*ka',
+  2: ',n1u',
+  3: 'Vl*\\',
+  4: '-C{4',
+  5: 'M=t+',
+  6: 'V-[G',
+  7: '9&M,',
+  8: 'jz<&',
+  9: '{me4',
+  10: 'bTc,',
+  11: '7/|y',
+  12: '+sK=',
+  13: '}h^i',
+  14: 'yx->',
+  15: 'q0Am',
+  16: '@S>(',
+  17: '`GRT',
+  18: '_LeY',
+  19: '/6+K',
+  20: 'HK!m',
+  21: 'Z-*g',
+  22: 'u@Xi',
+  23: '!GO|',
+  24: 'v3dC',
+  25: 'h`&=',
+  26: '*&%s',
+  27: '2;XS',
+  28: 'Y&.K',
+  29: '_Y@X',
+  30: '^0(+',
+  31: 'i&h2',
+  32: '<5qx',
+  33: 'j,$]',
+  34: 'OdrL',
+  35: 'tT+n',
+  36: '3U[&',
+  37: 'PpK]',
+  38: '5^#u',
+  39: 'k@x9',
+  40: 'p!2$',
+  41: 'r^&7',
+  42: 'l#d8',
+  43: 'c%t4',
+  44: 's@*f',
+  45: 'z^&6',
+  46: 'a#d9',
+  47: 'x%t3',
+  48: 'q^&8',
+  49: 'w#d7',
+  50: 'e%t2',
+  51: 'd^&9',
+  52: 'f#d6',
+  53: 'g%t1',
+  54: 'h^&8',
+  55: 'i#d5',
+  56: 'j%t0',
+  57: 'k^&7',
+  58: 'l#d4',
+  59: 'm%t9',
+  60: 'n^&6',
+  61: 'o#d3',
+  62: 'p%t8',
+  63: 'q^&5',
+  64: 'r#d2',
+  65: 's%t7',
+  66: 't^&4',
+  67: 'u#d1',
+  68: 'v%t6',
+  69: 'w^&3',
+  70: 'x#d0',
+  71: 'y%t5',
+  72: 'z^&2',
+  73: 'a#d9',
+  74: 'b%t4',
+  75: 'c^&1',
+  76: 'd#d8',
+  77: 'e%t3',
+  78: 'f^&0',
+  79: 'g#d7',
+  80: 'h%t2',
+  81: 'i^&9',
+  82: 'j#d6',
+  83: 'k%t1',
+  84: 'l^&8',
+  85: 'm#d5',
+  86: 'n%t0',
+  87: 'o^&7',
+  88: 'p#d4',
+  89: 'q%t9',
+  90: 'r^&6',
+  91: 's#d3',
+  92: 't%t8',
+  93: 'u^&5',
+  94: 'v#d2',
+  95: 'w%t7',
+  96: 'x^&4',
+  97: 'y#d1',
+  98: 'z%t6',
+  99: 'a^&3'
+};
+// Function to add a new message to the chat window
+function addMessage(username, message) {
+  const li = document.createElement('li');
+  li.innerHTML = `<strong>${username}:</strong> ${message}`;
+  messages.appendChild(li);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+// Function to handle form submission
+function handleSubmit(event) {
+  event.preventDefault();
+  // Get username and password from user input
+  const username = prompt('Please enter your username:');
+  const password = prompt('Please enter your password:');
+  // Check if username and password are valid
+  if (users[username] === password) {
+    const message = messageInput.value.trim();
+    if (message) {
+      addMessage(username, message);
+      messageInput.value = '';
+    }
+  } else {
+    alert('Invalid username or password!');
+  }
+}
+
+messageForm.addEventListener('submit', handleSubmit);</script></body></html>
